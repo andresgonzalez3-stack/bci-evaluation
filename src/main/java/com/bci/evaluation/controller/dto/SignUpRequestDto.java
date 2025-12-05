@@ -3,6 +3,7 @@ package com.bci.evaluation.controller.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 public class SignUpRequestDto {
@@ -12,6 +13,13 @@ public class SignUpRequestDto {
     @Email(message = "Invalid email format")
     private String email;
     @NotBlank(message = "Password cannot be blank")
+    @Pattern(regexp = "^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\\w\\d\\s:])([^\\s]){8,12}$",
+            message = "Password must " +
+                    "contain 1 number (0-9), " +
+                    "must contain 1 uppercase letters, " +
+                    "must contain 1 lowercase letters, " +
+                    "must contain 1 non-alpha numeric number " +
+                    "and password is 8-12 characters with no space")
     private String password;
     private List<PhoneDto> phones;
 
